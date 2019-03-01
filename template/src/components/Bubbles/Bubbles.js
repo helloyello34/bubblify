@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import ProductContainer from '../ProductContainer/ProductContainer'
+import ProductDetail from '../ProductDetail/ProductDetail'
 
 class Bubbles extends React.Component{
 
@@ -13,23 +14,22 @@ class Bubbles extends React.Component{
     }
 
     render() {
-        console.log(this.state.productId);
         if(typeof this.state.productId == 'undefined')  {
             return (
-                <div>
+                <React.Fragment>
                     <Navbar />
                     <ProductContainer />
-                </div>
+                </React.Fragment>
             )
         } else {
             return (
-                <div>
+                <React.Fragment>
                     <Navbar />
-                    <p>This is the product of my destruction {this.state.productId}</p>
-                </div>
+                    <ProductDetail { ...this.state.productId }/>
+                </React.Fragment>
             )
         }
-    }
-}
+    };
+};
 
-export default Bubbles
+export default Bubbles;
