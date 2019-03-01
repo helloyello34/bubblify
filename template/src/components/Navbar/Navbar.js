@@ -2,17 +2,20 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import NavLinks from '../NavLinks/NavLinks'
 
-const Navbar = () => { 
+const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-md navbar-light bg-light">
-            <NavLink
-                exact to="/"
-                className="navbar-brand"
-                >Logo</NavLink>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+            <NavLink exact to="/" className="navbar-brand">Logo</NavLink>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <NavLinks />
+            <div className="navbar-collapse collapse" id="navbarColor01">
+                <NavLinks />
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
         </nav>
     );
 }

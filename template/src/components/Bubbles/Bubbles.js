@@ -17,14 +17,12 @@ class Bubbles extends React.Component{
         if(typeof this.state.productId == 'undefined')  {
             return (
                 <div>
-                    <Navbar />
                     <ProductContainer />
                 </div>
             )
         } else {
             return (
                 <div>
-                    <Navbar />
                     <p>This is the product of my destruction {this.state.productId}</p>
                 </div>
             )
