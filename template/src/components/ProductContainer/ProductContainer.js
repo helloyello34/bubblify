@@ -24,7 +24,7 @@ class  ProductContainer extends React.Component {
     render() {
         var productList = this.state.products.map(product => {
             return ProductItem(product);
-        })
+        });
         return (
             <div className="productContainer">
                 {productList}
