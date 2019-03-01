@@ -1,0 +1,12 @@
+/* You can add styles here */
+
+.productContainer {
+    margin: 50px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.productItem {
+    flex: 1 33.3%;
+    border: 1px solid blue;
+}
