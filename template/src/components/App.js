@@ -1,14 +1,15 @@
 import React from 'react';
-import {Route, Redirect} from 'react-router-dom'
-import Home from './Home/Home'
-import Bubbles from './Bubbles/Bubbles'
-import About from './About/About'
-import Bundles from './Bundles/Bundles'
-import Cart from './Cart/Cart'
+import {Route, Redirect} from 'react-router-dom';
+import Navbar from './Navbar/Navbar';
+import Home from './Home/Home';
+import Bubbles from './Bubbles/Bubbles';
+import About from './About/About';
+import Bundles from './Bundles/Bundles';
+import Cart from './Cart/Cart';
 
-class App extends React.Component {
-    render() {
-        return (
+const App = () => {
+    return (
+        <div>
             <Navbar />
             <div className="container">
                 <Route exact path="/" component={ Home } />
@@ -19,8 +20,8 @@ class App extends React.Component {
                 <Route exact path="/about" component={ About } />
                 <Route exact path="/cart" component={ Cart } />
             </div>
-        );
-    };
+        </div>
+    )
 };
 
 export default App;
