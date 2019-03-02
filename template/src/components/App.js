@@ -5,6 +5,7 @@ import Bubbles from './Bubbles/Bubbles'
 import About from './About/About'
 import Bundle from './Bundle/Bundle'
 import Cart from './Cart/Cart'
+import Navbar from './Navbar/Navbar'
 import ProductDetail from './ProductDetail/ProductDetail'
 
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import axios from 'axios'
-import ProductItem from '../ProductItem/ProductItem'
+import BundleItem from '../BundleItem/BundleItem'
 
-class ProductContainer extends React.Component {
+class BundleContainer extends React.Component {
 
     constructor() {
         super();
@@ -12,7 +12,7 @@ class ProductContainer extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3500/api/bubbles')
+        axios.get('http://localhost:3500/api/bundles')
         .then(res => {
             var res_data = res.data.map(item => item)
             this.setState({
@@ -22,15 +22,15 @@ class ProductContainer extends React.Component {
     };
 
     render() {
-        var productList = this.state.products.map(product => {
-            return ProductItem(product);
+        var BundleList = this.state.products.map(product => {
+            return BundleItem(product);
         });
         return (
             <div className="list-group">
-                {productList}
+                {BundleList}
             </div>
         );
     };
 };
 
-export default ProductContainer;
+export default BundleContainer;
