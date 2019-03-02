@@ -15,7 +15,8 @@ const ProductItem = (bundle) => {
         // </NavLink>
         // <button type="button" class="btn btn-primary">Add to cart</button>
         // </div>
-        <div></div>
+        <div
+        key={ bundle.id }></div>
     );
 };
 
