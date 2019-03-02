@@ -16,9 +16,11 @@ class Bubbles extends React.Component{
     render() {
         if(typeof this.state.productId == 'undefined')  {
             return (
+
                 <React.Fragment>
-                    <Navbar />
-                    <ProductContainer />
+                    <div className="outer-product-container">
+                        <ProductContainer />
+                    </div>
                 </React.Fragment>
             )
         } else {

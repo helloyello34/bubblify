@@ -3,18 +3,17 @@ import { NavLink } from 'react-router-dom'
 
 const NavLinks = () => {
     return (
-        <div className="navbar-collapse collapse"
-            id="navbarColor01">
+        <div className="navbar-collapse collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                    <NavLink  
+                    <NavLink
                         exact to="/bubbles"
                         activeClassName="active"
                         className="nav-link">Products
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink 
+                    <NavLink
                         exact to="/bundles"
                         activeClassName="active"
                         className="nav-link">
@@ -22,7 +21,7 @@ const NavLinks = () => {
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink  
+                    <NavLink
                         exact to="/about"
                         activeClassName="active"
                         className="nav-link">
@@ -30,7 +29,7 @@ const NavLinks = () => {
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink 
+                    <NavLink
                         exact to="/cart"
                         activeClassName="active"
                         className="nav-link">
