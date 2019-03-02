@@ -5,8 +5,9 @@ class ProductDetail extends React.Component {
 
   constructor(prop) {
     super(prop)
+    console.log(prop);
     this.state = {
-      productId: prop[0],
+      productId: prop.match.params.id,
       product: []
     }
   }
