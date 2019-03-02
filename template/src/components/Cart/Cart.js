@@ -4,7 +4,6 @@ import Navbar from '../Navbar/Navbar'
 const Cart = () => {
     return (
         <div>
-            <Navbar />
             <p>Cart</p>
         </div>
     );

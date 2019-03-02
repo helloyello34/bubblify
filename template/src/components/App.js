@@ -7,9 +7,11 @@ import Bundle from './Bundle/Bundle'
 import Cart from './Cart/Cart'
 import ProductDetail from './ProductDetail/ProductDetail'
 
-class App extends React.Component {
-    render() {
-        return (
+
+const App = () => {
+    return (
+        <div>
+            <Navbar />
             <div className="container">
                 <Route exact path="/" component={ Home } />
                 <Route path="/home" render={ () => <Redirect to="/" /> } />
@@ -18,10 +20,11 @@ class App extends React.Component {
                 <Route exact path="/bundles" component={ Bundle } />
                 {/* <Route exact path="/bundles/:id" component={ Bundle } /> */}
                 <Route exact path="/about" component={ About } />     
+
                 <Route exact path="/cart" component={ Cart } />
             </div>
-        );
-    };
+        </div>
+    )
 };
 
 export default App;
