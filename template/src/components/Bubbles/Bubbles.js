@@ -5,10 +5,11 @@ import ProductDetail from '../ProductDetail/ProductDetail'
 
 const Bubbles = () => {
     return (
-        <React.Fragment>
+        <div className="outer-product-container">
             <ProductContainer />
-        </React.Fragment>
+        </div>
     );
+
 };
 
 export default Bubbles;
