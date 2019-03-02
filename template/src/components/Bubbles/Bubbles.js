@@ -16,7 +16,7 @@ class Bubbles extends React.Component{
         console.log(this.state.productId);
         if(typeof this.state.productId == 'undefined')  {
             return (
-                <div>
+                <div className="outer-product-container">
                     <ProductContainer />
                 </div>
             )
