@@ -1,37 +1,36 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import BubbleServices from '../../services/BubbleServices/BubbleServices';
 
 class ProductDetail extends React.Component {
 
-  constructor(prop) {
-    super(prop)
-    console.log(prop);
-    this.state = {
-      productId: prop.match.params.id,
-      product: []
+    constructor(props) {
+        super(props)
+        this.state = {
+            productId: props.match.params.id,
+            product: []
+        }
     }
-  }
 
-  componentDidMount() {
-      axios.get('http://localhost:3500/api/bubbles/' + this.state.productId)
-      .then(res => {
-          console.log(res.data);
-          this.setState({
-              product: res.data
-          })
-      });
-  };
+    componentDidMount() {
+        BubbleServices.getBubbleById(this.state.productId).then(res => {
+            console.log(res);
+            this.setState({
+                product: res
+            })
+        });
+    };
 
-  render() {
-    return (
-      <div>
-        <h1>{this.state.product.name}</h1>
-        <img src={this.state.product.image}></img>
-        <p>description: {this.state.product.description}</p>
-        <p>kr. {this.state.product.price}</p>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+                <h1>{this.state.product.name}</h1>
+                <img src={this.state.product.image}></img>
+                <p>description: {this.state.product.description}</p>
+                <p>kr. {this.state.product.price}</p>
+            </div>
+        );
+    }
 
 }
 

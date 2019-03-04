@@ -7,7 +7,7 @@ import Bundle from './Bundle/Bundle'
 import Cart from './Cart/Cart'
 import Navbar from './Navbar/Navbar'
 import ProductDetail from './ProductDetail/ProductDetail'
-
+import BundleDetail from './BundleDetail/BundleDetail'
 
 const App = () => {
     return (
@@ -19,9 +19,8 @@ const App = () => {
                 <Route exact path="/bubbles" component={ Bubbles } />
                 <Route exact path="/bubbles/:id" component={ ProductDetail } />
                 <Route exact path="/bundles" component={ Bundle } />
-                {/* <Route exact path="/bundles/:id" component={ Bundle } /> */}
+                <Route exact path="/bundles/:id" component={ BundleDetail } />
                 <Route exact path="/about" component={ About } />     
-
                 <Route exact path="/cart" component={ Cart } />
             </div>
         </div>
