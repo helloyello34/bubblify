@@ -14,6 +14,7 @@ class ProductDetail extends React.Component {
 
     componentDidMount() {
         BubbleServices.getBubbleById(this.state.productId).then(res => {
+            console.log(res);
             this.setState({
                 product: res
             })
