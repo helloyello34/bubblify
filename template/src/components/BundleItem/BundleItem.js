@@ -3,7 +3,6 @@ import {NavLink} from 'react-router-dom'
 
 const ProductItem = (bundle) => {
     var link = "/bundles/" + bundle.id
-    console.log(bundle)
     return (
         <div
         key={ bundle.id }
