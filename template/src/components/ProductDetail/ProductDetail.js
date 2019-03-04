@@ -23,11 +23,16 @@ class ProductDetail extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>{this.state.product.name}</h1>
-                <img src={this.state.product.image}></img>
-                <p>description: {this.state.product.description}</p>
-                <p>kr. {this.state.product.price}</p>
+            <div className="outer-product-container center">
+                <div className="card border-secondary mb-3">
+                    <div className="card-header">{this.state.product.name}</div>
+                    <div className="card-body">
+                        <img src={this.state.product.image}></img>
+                        <p>Description:<br/> {this.state.product.description}</p>
+                        <p>kr. {this.state.product.price}</p>
+                        <button className="btn btn-primary">Add to cart</button>
+                    </div>
+                </div>
             </div>
         );
     }

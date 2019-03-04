@@ -1,22 +1,16 @@
 /* You can add styles here */
 
-.list-group {
+.list {
     margin: 0;
     padding: 0;
     display: flex;
     flex-flow: row wrap;
-
+    justify-content: space-between;
 }
 
-.list-group-item {
-    flex: 1 33.3%;
+.list-item {
+    flex: 33.3%;
 }
-
-/* .card {
-    max-width: 20rem;
-    margin: 0;
-    padding: 0;
-} */
 
 .outer-product-container {
     margin-top: 30px;
@@ -26,4 +20,19 @@
 .logo {
     height: 50px;
     width: 50px;
+}
+
+.card {
+    max-width: 20rem;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.card:hover {
+    background-color: rgb(129, 139, 149);
 }

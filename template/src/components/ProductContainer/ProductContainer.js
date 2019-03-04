@@ -25,7 +25,7 @@ class ProductContainer extends React.Component {
             return ProductItem(product);
         });
         return (
-            <div className="list-group">
+            <div className="list">
                 {productList}
             </div>
         );
