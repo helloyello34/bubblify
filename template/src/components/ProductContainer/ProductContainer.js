@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import ProductItem from '../ProductItem/ProductItem'
+import BubbleServices from '../../services/BubbleServices/BubbleServices'
 
 class ProductContainer extends React.Component {
 
@@ -12,12 +13,10 @@ class ProductContainer extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3500/api/bubbles')
-        .then(res => {
-            var res_data = res.data.map(item => item)
+        BubbleServices.getAllBubbles().then(res => {
             this.setState({
-                products: res_data
-            })
+                products: res
+            });
         });
     };
 
