@@ -1,6 +1,6 @@
 import React from 'react'
-import axios from 'axios'
 import BundleItem from '../BundleItem/BundleItem'
+import BubbleServices from '../../services/BubbleServices/BubbleServices'
 
 class BundleContainer extends React.Component {
 
@@ -12,13 +12,11 @@ class BundleContainer extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3500/api/bundles')
-        .then(res => {
-            var res_data = res.data.map(item => item)
+        BubbleServices.getAllBundles().then(res => {
             this.setState({
-                products: res_data
+                products: res
             })
-        });
+        })
     };
 
     render() {
