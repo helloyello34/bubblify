@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import BubbleServices from '../../services/BubbleServices/BubbleServices'
 
 class BundleDetail extends React.Component {
@@ -13,21 +12,21 @@ class BundleDetail extends React.Component {
 	}
 
 	componentDidMount() {
-		BubbleServices.getBundleWithId(this.state.bundleId).then(res => {
+		BubbleServices.getBundleById(this.state.bundleId).then(res => {
 			this.setState({
 				bundle: res
-			})
-		})
+			});
+		});
 	}
 
 	render() {
 		return (
 			<div>
-				<h1>{ this.state.bundle.name }</h1>
+				<h1>{this.state.bundle.name}</h1>
 			</div>
 		);
 	}
 
 };
 
-export default BundleDetail;
+export default  BundleDetail;
