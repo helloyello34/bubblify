@@ -1,34 +1,24 @@
 import React from 'react'
 import BundleItem from '../BundleItem/BundleItem'
 import BubbleServices from '../../services/BubbleServices/BubbleServices'
+import { BundleConsumer } from '../../context/BundleContext/BundleContext'
 
-class BundleContainer extends React.Component {
-
-    constructor() {
-        super();
-        this.state = {
-            products: []
-        };
-    }
-
-    componentDidMount() {
-        BubbleServices.getAllBundles().then(res => {
-            this.setState({
-                products: res
-            })
-        })
-    };
-
-    render() {
-        var BundleList = this.state.products.map(product => {
-            return BundleItem(product);
-        });
-        return (
-            <div className="list-group">
-                {BundleList}
-            </div>
-        );
-    };
+const BundleContainer = () => {
+    return (
+        <div className="list-group">
+            <BundleConsumer>
+                {
+                    BundleContext => {
+                        return (
+                            BundleContext.data.map(product => {
+                                return BundleItem(product);
+                            })
+                        )
+                    }
+                }
+            </BundleConsumer>
+        </div>
+    );
 };
 
 export default BundleContainer;
