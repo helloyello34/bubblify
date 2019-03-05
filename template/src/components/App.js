@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Redirect} from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import Home from './Home/Home'
 import Bubbles from './Bubbles/Bubbles'
 import About from './About/About'
@@ -8,11 +8,11 @@ import Cart from './Cart/Cart'
 import Navbar from './Navbar/Navbar'
 import ProductDetail from './ProductDetail/ProductDetail'
 import BundleDetail from './BundleDetail/BundleDetail'
-import {BubbleProvider} from '../context/BubbleContext/BubbleContext'
-import {BundleProvider} from '../context/BundleContext/BundleContext'
-import BubbleServices from '../services/BubbleSErvices/BubbleServices'
+import { BubbleProvider } from '../context/BubbleContext/BubbleContext'
+import { BundleProvider } from '../context/BundleContext/BundleContext'
+import BubbleServices from '../services/BubbleServices/BubbleServices'
 
-class App extends React.Component{
+class App extends React.Component {
 
     constructor() {
         super();
@@ -33,10 +33,10 @@ class App extends React.Component{
                 setBundles: data => {
                     this.setState({
                         bundles: {
-                             ...this.state.bundles,
-                             data: data
-                         }
-                     });
+                            ...this.state.bundles,
+                            data: data
+                        }
+                    });
                 }
             }
         }
@@ -55,19 +55,19 @@ class App extends React.Component{
 
     render() {
         return (
-            <BubbleProvider value={ this.state.bubbles }>
-                <BundleProvider value={ this.state.bundles }>
+            <BubbleProvider value={this.state.bubbles}>
+                <BundleProvider value={this.state.bundles}>
                     <div>
                         <Navbar />
                         <div className="container">
-                            <Route exact path="/" component={ Home } />
-                            <Route path="/home" render={ () => <Redirect to="/" /> } />
-                            <Route exact path="/bubbles" component={ Bubbles } />
-                            <Route exact path="/bubbles/:id" component={ ProductDetail } />
-                            <Route exact path="/bundles" component={ Bundle } />
-                            <Route exact path="/bundles/:id" component={ BundleDetail } />
-                            <Route exact path="/about" component={ About } />
-                            <Route exact path="/cart" component={ Cart } />
+                            <Route exact path="/" component={Home} />
+                            <Route path="/home" render={() => <Redirect to="/" />} />
+                            <Route exact path="/bubbles" component={Bubbles} />
+                            <Route exact path="/bubbles/:id" component={ProductDetail} />
+                            <Route exact path="/bundles" component={Bundle} />
+                            <Route exact path="/bundles/:id" component={BundleDetail} />
+                            <Route exact path="/about" component={About} />
+                            <Route exact path="/cart" component={Cart} />
                         </div>
                     </div>
                 </BundleProvider>
