@@ -1,18 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import BubbleServices from '../../services/BubbleServices/BubbleServices'
+import { BubbleConsumer } from '../../context/BubbleContext/BubbleContext'
+import productItem from '../ProductItem/ProductItem.js'
 
 class BundleDetail extends React.Component {
 
 	constructor(props) {
 		super(props);
+		const { id } = props.match.params;
 		this.state = {
-				bundleId: props.match.params.id,
-				bundle: []
+			id: id,
+			bundle: {
+				id: 0,
+				items: []
+			}
 		};
 	}
 
 	componentDidMount() {
-		BubbleServices.getBundleById(this.state.bundleId).then(res => {
+		BubbleServices.getBundleById(this.state.id).then(res => {
+			console.log(res);
 			this.setState({
 				bundle: res
 			});
@@ -21,12 +29,32 @@ class BundleDetail extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<h1>{this.state.bundle.name}</h1>
-			</div>
+			<>
+				<div>
+					<h1>{this.state.bundle.name}</h1>
+				</div>
+				<BubbleConsumer>
+					{
+						BubbleContext => {
+							return (
+								BubbleContext.data.map(product => {
+									if (this.state.bundle.items.indexOf(product.id) != -1) {
+										//Veit ekki hvort það er 'ideal' að re-use productItem, annars bara bua til annan nanast eins component
+										return productItem(product);
+									}
+								})
+							)
+						}
+					}
+				</BubbleConsumer>
+			</>
 		);
 	}
 
 };
-
-export default  BundleDetail;
+/*
+BundleDetail.propTypes = {
+	id: PropTypes.string.isRequired
+}
+*/
+export default BundleDetail;
