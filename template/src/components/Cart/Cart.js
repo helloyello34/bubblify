@@ -1,23 +1,32 @@
 import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import App from '../App'
+import { Link } from 'react-router-dom'
 
 const Cart = props => {
     const { bubbles } = props.cartItems;
     console.log(bubbles);
     return (
-        <ul>
-            {
-                bubbles.map(bubble => {
-                    return (
-                        <li key={bubble.id}>
-                            {bubble.name}, kr.{bubble.price}
-                            <i className="fas fa-trash-alt trash"></i>
-                        </li>
-                    )
-                })
-            }
-        </ul>
+        <React.Fragment>
+            <ul>
+                {
+                    bubbles.map(bubble => {
+                        return (
+                            <li key={bubbles.indexOf(bubble)}>
+                                {bubble.name}, kr.{bubble.price}
+                                <i className="fas fa-trash-alt trash"></i>
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+            <Link to="/checkoutdelivery" cartitems={props.cartItems} key={props.cartItems.id}>
+                <button className="btn btn-primary">Checkout by delivery</button>
+            </Link>
+            <Link to="/checkout" cartitems={props.cartItems} key={props.cartItems.id}>
+                <button className="btn btn-primary">Checkout by delivery</button>
+            </Link>
+        </React.Fragment>
     );
 };
 
