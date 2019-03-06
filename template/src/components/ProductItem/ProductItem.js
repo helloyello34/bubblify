@@ -7,7 +7,7 @@ const ProductItem = (props) => {
     var link = "/bubbles/" + props.product.id
     return (
         <div
-            key={props.id}
+            key={props.product.id}
             className="list-group-item list-group-item-action flex-column align-items-center">
             <NavLink to={link} className="productItem" key={props.product.id}>
                 <div>
