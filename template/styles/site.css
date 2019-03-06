@@ -27,3 +27,9 @@
     height: 50px;
     width: 50px;
 }
+.cart-icon{
+    margin-right: 10px;
+}
+.cart-number{
+    font-size: 26px;
+}

@@ -16,6 +16,7 @@ class App extends React.Component {
 
     constructor() {
         super();
+        //localStorage.clear();
         this.state = {
             bubbles: {
                 data: [],
@@ -38,19 +39,47 @@ class App extends React.Component {
                         }
                     });
                 }
+            },
+            cart: {
+                bubbles: [],
+                setCart: data => {
+                    this.setState({
+                        cart: {
+                            bubbles: data
+                        }
+                    })
+                }
             }
         }
     }
 
+    addToCartHandler = (item) => {
+        //setState of cart and save to localStorage
+
+        var arr = this.state.cart.bubbles;
+        arr = [...arr, item];
+        this.setState({
+            bubbles: this.state.bubbles,
+            bundles: this.state.bundles,
+            cart: { ...this.state.cart, bubbles: arr },
+        })
+    }
+
+    componentDidUpdate() {
+        localStorage.setItem('cart', JSON.stringify(this.state.cart));
+    }
+
     componentDidMount() {
         BubbleServices.getAllBubbles().then(res => {
-            console.log('setting result to bubbles');
             this.state.bubbles.setBubbles(res);
         });
         BubbleServices.getAllBundles().then(res => {
-            console.log('setting result to bundle');
             this.state.bundles.setBundles(res);
         });
+        var myCart = JSON.parse(localStorage.getItem('cart'));
+        if (myCart != null) {
+            this.state.cart.setCart(myCart.bubbles);
+        }
     }
 
     render() {
@@ -62,7 +91,10 @@ class App extends React.Component {
                         <div className="container">
                             <Route exact path="/" component={Home} />
                             <Route path="/home" render={() => <Redirect to="/" />} />
-                            <Route exact path="/bubbles" component={Bubbles} />
+                            <Route exact path="/bubbles"
+                                render={(routeProps) => (
+                                    <Bubbles {...routeProps} {...this.props} addToCart={this.addToCartHandler} />
+                                )} />
                             <Route exact path="/bubbles/:id" component={ProductDetail} />
                             <Route exact path="/bundles" component={Bundle} />
                             <Route exact path="/bundles/:id" component={BundleDetail} />
