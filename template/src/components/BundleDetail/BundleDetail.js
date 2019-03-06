@@ -29,7 +29,7 @@ class BundleDetail extends React.Component {
 
 	render() {
 		return (
-			<>
+			<React.Fragment>
 				<div>
 					<h1>{this.state.bundle.name}</h1>
 				</div>
@@ -47,7 +47,7 @@ class BundleDetail extends React.Component {
 						}
 					}
 				</BubbleConsumer>
-			</>
+			</React.Fragment>
 		);
 	}
 

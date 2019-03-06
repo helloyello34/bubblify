@@ -33,3 +33,11 @@
 .cart-number{
     font-size: 26px;
 }
+
+.trash {
+    color: gray;
+}
+
+.trash:hover {
+    color: red;
+}
