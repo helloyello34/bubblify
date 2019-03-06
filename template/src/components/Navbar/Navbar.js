@@ -2,16 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import NavLinks from '../NavLinks/NavLinks'
 
-const Navbar = () => {
-    var myCart = JSON.parse(localStorage.getItem('cart'));
-    if (myCart == null) {
+//props er hversu mörg item eru i cart
 
-        var cartNumber = 0;
-    } else {
-        var cartNumber = myCart.bubbles.length;
-    }
-
-    console.log(cartNumber);
+const Navbar = (props) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container">
@@ -21,7 +14,7 @@ const Navbar = () => {
                 </button>
                 <NavLinks />
                 <i className="fas fa-shopping-cart fa-2x cart-icon"></i>
-                <span className="cart-number badge badge-pill badge-primary">{cartNumber}</span>
+                <span className="cart-number badge badge-pill badge-primary">{props.length}</span>
             </div>
         </nav>
     );

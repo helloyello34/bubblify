@@ -45,6 +45,7 @@ class App extends React.Component {
                 setCart: data => {
                     this.setState({
                         cart: {
+                            ...this.state.cart,
                             bubbles: data
                         }
                     })
@@ -83,11 +84,12 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(this.state.cart);
         return (
             <BubbleProvider value={this.state.bubbles}>
                 <BundleProvider value={this.state.bundles}>
                     <div>
-                        <Navbar />
+                        <Navbar length={this.state.cart.bubbles.length} />
                         <div className="container">
                             <Route exact path="/" component={Home} />
                             <Route path="/home" render={() => <Redirect to="/" />} />
