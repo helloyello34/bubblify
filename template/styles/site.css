@@ -22,6 +22,21 @@
     width: 50px;
 }
 
+.cart-icon{
+    margin-right: 10px;
+}
+.cart-number{
+    font-size: 26px;
+}
+
+.trash {
+    color: gray;
+}
+
+.trash:hover {
+    color: red;
+}
+
 .card {
     max-width: 20rem;
 }

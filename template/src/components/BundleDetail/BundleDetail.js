@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import BubbleServices from '../../services/BubbleServices/BubbleServices'
 import { BubbleConsumer } from '../../context/BubbleContext/BubbleContext'
-import productItem from '../ProductItem/ProductItem.js'
+import BundleDetailItem from '../BundleDetailItem/BundleDetailtem.js'
 
 class BundleDetail extends React.Component {
 
@@ -29,7 +29,7 @@ class BundleDetail extends React.Component {
 
 	render() {
 		return (
-			<>
+			<React.Fragment>
 				<div>
 					<h1>{this.state.bundle.name}</h1>
 				</div>
@@ -40,14 +40,14 @@ class BundleDetail extends React.Component {
 								BubbleContext.data.map(product => {
 									if (this.state.bundle.items.indexOf(product.id) != -1) {
 										//Veit ekki hvort það er 'ideal' að re-use productItem, annars bara bua til annan nanast eins component
-										return productItem(product);
+										return BundleDetailItem(product);
 									}
 								})
 							)
 						}
 					}
 				</BubbleConsumer>
-			</>
+			</React.Fragment>
 		);
 	}
 

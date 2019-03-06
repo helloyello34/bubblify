@@ -2,7 +2,7 @@ import React from 'react'
 import ProductItem from '../ProductItem/ProductItem'
 import { BubbleConsumer } from '../../context/BubbleContext/BubbleContext'
 
-const ProductContainer = () => {
+const ProductContainer = (props) => {
     return (
         <div className="list-group">
             <BubbleConsumer>
@@ -10,7 +10,7 @@ const ProductContainer = () => {
                     BubbleContext => {
                         return (
                             BubbleContext.data.map(product => {
-                                return ProductItem(product);
+                                return <ProductItem key={product.id} product={product} addToCart={props.addToCart} />;
                             })
                         )
                     }
