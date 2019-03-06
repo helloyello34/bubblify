@@ -66,6 +66,22 @@ class App extends React.Component {
         })
     }
 
+    removeFromCartHandler = (id) => {
+        // Remove from the cart
+
+        var arr = this.state.cart.bubbles;
+
+        if(arr.length > -1) {
+            arr.splice(id, 1);
+        }
+
+        this.setState({
+            bubbles: {...this.state.bubbles},
+            bundles: {...this.state.bundles},
+            cart: {...this.state.cart, bubbles: arr}
+        });
+    }
+
     componentDidUpdate() {
         localStorage.setItem('cart', JSON.stringify(this.state.cart));
     }
@@ -98,7 +114,7 @@ class App extends React.Component {
                                 )} />
                             <Route exact path="/cart"
                                 render={(routeProps) => (
-                                    <Cart cartItems={this.state.cart} />
+                                    <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} />
                                 )} />
                             <Route exact path="/bubbles/:id" component={ProductDetail} />
                             <Route exact path="/bundles" component={Bundle} />

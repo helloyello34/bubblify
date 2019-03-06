@@ -5,16 +5,18 @@ import { Link } from 'react-router-dom'
 
 const Cart = props => {
     const { bubbles } = props.cartItems;
-    console.log(bubbles);
+    const removeFromCart = props.removeFromCart;
     return (
         <React.Fragment>
             <ul>
                 {
-                    bubbles.map(bubble => {
+                    bubbles.map((bubble, index) => {
                         return (
-                            <li key={bubbles.indexOf(bubble)}>
+                            <li key={index}>
                                 {bubble.name}, kr.{bubble.price}
-                                <i className="fas fa-trash-alt trash"></i>
+                                <i className="fas fa-trash-alt trash" onClick={() => {
+                                    removeFromCart(index);
+                                }}></i>
                             </li>
                         )
                     })
