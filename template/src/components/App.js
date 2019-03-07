@@ -8,6 +8,8 @@ import Cart from './Cart/Cart'
 import Navbar from './Navbar/Navbar'
 import ProductDetail from './ProductDetail/ProductDetail'
 import BundleDetail from './BundleDetail/BundleDetail'
+import DeliveryCheckout from './DeliveryCheckout/DeliveryCheckout.js'
+import DeliveryStore from './DeliveryStore/DeliveryStore.js'
 import { BubbleProvider } from '../context/BubbleContext/BubbleContext'
 import { BundleProvider } from '../context/BundleContext/BundleContext'
 import BubbleServices from '../services/BubbleServices/BubbleServices'
@@ -104,6 +106,14 @@ class App extends React.Component {
                             <Route exact path="/bundles" component={Bundle} />
                             <Route exact path="/bundles/:id" component={BundleDetail} />
                             <Route exact path="/about" component={About} />
+                            <Route exact path="/checkoutdelivery"
+                                render={() => (
+                                    <DeliveryCheckout cartItems={this.state.cart} />
+                                )} />
+                            <Route exact path="/checkout"
+                                render={() => (
+                                    <DeliveryStore cartItems={this.state.cart} />
+                                )} />
                         </div>
                     </div>
                 </BundleProvider>

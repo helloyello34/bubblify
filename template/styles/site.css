@@ -51,3 +51,6 @@
 .card:hover {
     background-color: rgb(129, 139, 149);
 }
+.error{
+    color: red;
+}
