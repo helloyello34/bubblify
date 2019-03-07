@@ -2,11 +2,11 @@ import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import App from '../App'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const Cart = props => {
     const { bubbles, total } = props.cartItems;
     const removeFromCart = props.removeFromCart;
-    console.log(total);
     return (
         <React.Fragment>
             {
@@ -39,9 +39,9 @@ const Cart = props => {
     );
 };
 
-<blockquote class="blockquote">
-  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-  <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-</blockquote>
+Cart.propTypes = {
+    bubbles: PropTypes.object,
+    total: PropTypes.number
+}
 
 export default Cart;

@@ -16,13 +16,10 @@ class BundleDetail extends React.Component {
 				items: []
 			},
 		};
-		console.log("hebbo");
-		console.log(props);
 	}
 
 	componentDidMount() {
 		BubbleServices.getBundleById(this.state.id).then(res => {
-			console.log(res);
 			this.setState({
 				bundle: res
 			});
@@ -55,9 +52,9 @@ class BundleDetail extends React.Component {
 	}
 
 };
-/*
+
 BundleDetail.propTypes = {
-	id: PropTypes.string.isRequired
+	id: PropTypes.number
 }
-*/
+
 export default BundleDetail;

@@ -64,17 +64,22 @@ class App extends React.Component {
             bubbles: this.state.bubbles,
             bundles: this.state.bundles,
             cart: { ...this.state.cart, total: this.state.cart.total + item.price, bubbles: arr },
-
         })
     }
 
     addBundleToCartHandler = (bundle) => {
         var arr = this.state.cart.bubbles;
-        arr = [...arr, ...bundle.items];
+        let tempArr = [];
+        let price = this.state.cart.total;
+        for(let i = 0; i < bundle.items.length; i++) {
+            tempArr.push(this.state.bubbles.data[bundle.items[i]-1]);
+            price += this.state.bubbles.data[bundle.items[i]-1].price
+        }
+        arr = [...arr, ...tempArr];
         this.setState({
             bubbles: this.state.bubbles,
             bundles: this.state.bundles,
-            cart: {...this.state.cart, bubbles: arr}
+            cart: {...this.state.cart, total: price, bubbles: arr}
         })
     }
 
@@ -116,7 +121,7 @@ class App extends React.Component {
             <BubbleProvider value={this.state.bubbles}>
                 <BundleProvider value={this.state.bundles}>
                     <div>
-                        <Navbar length={this.state.cart.bubbles.length} />
+                        <Navbar cartCount={this.state.cart.bubbles.length} />
                         <div className="container">
                             <Route exact path="/" component={Home} />
                             <Route path="/home" render={() => <Redirect to="/" />} />
