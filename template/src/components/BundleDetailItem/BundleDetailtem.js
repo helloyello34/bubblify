@@ -17,7 +17,6 @@ const BundleDetailItem = (props) => {
                     <p className="text-white">kr. {price}</p>
                 </div>
             </NavLink>
-            <button type="button" className="btn btn-primary" onClick={() => addToCart(props)}>Add to cart</button>
         </div>
     );
 };
