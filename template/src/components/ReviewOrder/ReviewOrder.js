@@ -14,6 +14,7 @@ class ReviewOrder extends Component {
         this.setState({
             accepted: true
         })
+        this.props.emptyCart();
     }
 
     render() {
