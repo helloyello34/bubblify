@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 
 const Cart = props => {
     const { bubbles, total } = props.cartItems;
+    console.log(props);
     const removeFromCart = props.removeFromCart;
     return (
         <React.Fragment>
@@ -21,8 +22,11 @@ const Cart = props => {
                             <footer className="blockquote-footer">
                                 kr.{bubble.price}
                                 <i className="fas fa-trash-alt trash" onClick={() => {
-                                    removeFromCart(index);
+                                    if(removeFromCart != 'undefined'){
+                                        removeFromCart(index);
+                                    }
                                 }}></i>
+
                             </footer>
                         </blockquote>
                     )

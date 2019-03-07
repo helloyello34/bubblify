@@ -15,12 +15,13 @@ import { BundleProvider } from '../context/BundleContext/BundleContext'
 import BubbleServices from '../services/BubbleServices/BubbleServices'
 import ReviewOrder from './ReviewOrder/ReviewOrder';
 import Success from './Success/Success.js'
+import OldOrders from './OldOrders/OldOrders'
 
 class App extends React.Component {
 
     constructor() {
         super();
-        //localStorage.clear();
+        // localStorage.clear();
         this.state = {
             bubbles: {
                 data: [],
@@ -153,10 +154,14 @@ class App extends React.Component {
                             <Route exact path="/checkout"
                                 render={() => (
                                     <DeliveryStore cartItems={this.state.cart} />
+                                )} />
                             <Route exact path="/cart"
                                 render={(routeProps) => (
                                     <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} />
                                 )} />
+                            <Route exact path="/oldorders" render={() => (
+                                <OldOrders currentCart={this.state.cart} />
+                            )} />
                         </div>
                     </div>
                 </BundleProvider>
