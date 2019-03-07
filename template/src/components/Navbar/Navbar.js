@@ -1,10 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import NavLinks from '../NavLinks/NavLinks'
+import PropTypes from 'prop-types'
 
 //props er hversu mörg item eru i cart
 
 const Navbar = (props) => {
+    const {cartCount} = props;
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container">
@@ -12,12 +14,16 @@ const Navbar = (props) => {
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <NavLinks />
+                <NavLinks numInCart={cartCount}/>
                 <i className="fas fa-shopping-cart fa-2x cart-icon"></i>
-                <span className="cart-number badge badge-pill badge-primary">{props.length}</span>
+                <span className="cart-number badge badge-pill badge-primary">{cartCount}</span>
             </div>
         </nav>
     );
+}
+
+Navbar.propTypes = {
+    cartCount: PropTypes.number
 }
 
 export default Navbar;

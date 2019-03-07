@@ -1,15 +1,18 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 import BundleContainer from '../BundleContainer/BundleContainer'
+import PropTypes from 'prop-types';
 
-class Bundle extends Component {
-    render(){
-        return (
-            <div className="outer-product-container">
-                <BundleContainer addToCart={this.props.addToCart} />
-            </div>
-        )
-    }
+const Bundle = (props) => {
+    const {addToCart} = props;
+    return (
+        <div className="outer-product-container">
+            <BundleContainer addToCart={addToCart} />
+        </div>
+    )
 };
+
+Bundle.propTypes = {
+    addToCart: PropTypes.func
+}
 
 export default Bundle;

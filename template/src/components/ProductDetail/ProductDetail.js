@@ -10,12 +10,10 @@ class ProductDetail extends React.Component {
             productId: props.match.params.id,
             product: []
         }
-        console.log(props);
     }
 
     componentDidMount() {
         BubbleServices.getBubbleById(this.state.productId).then(res => {
-            console.log(res);
             this.setState({
                 product: res
             })

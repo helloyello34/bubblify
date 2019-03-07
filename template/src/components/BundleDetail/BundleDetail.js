@@ -16,13 +16,10 @@ class BundleDetail extends React.Component {
 				items: []
 			},
 		};
-		console.log("hebbo");
-		console.log(props);
 	}
 
 	componentDidMount() {
 		BubbleServices.getBundleById(this.state.id).then(res => {
-			console.log(res);
 			this.setState({
 				bundle: res
 			});
@@ -42,7 +39,6 @@ class BundleDetail extends React.Component {
 							return (
 								BubbleContext.data.map(product => {
 									if (this.state.bundle.items.indexOf(product.id) != -1) {
-										//Veit ekki hvort það er 'ideal' að re-use productItem, annars bara bua til annan nanast eins component
 										return BundleDetailItem(product);
 									}
 								})
@@ -55,9 +51,9 @@ class BundleDetail extends React.Component {
 	}
 
 };
-/*
-BundleDetail.propTypes = {
-	id: PropTypes.string.isRequired
-}
-*/
+
 export default BundleDetail;
+
+BundleDetail.propTypes = {
+	id: PropTypes.number
+}

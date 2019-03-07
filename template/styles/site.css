@@ -31,6 +31,7 @@
 
 .trash {
     color: gray;
+    margin-left: 100px;
 }
 
 .trash:hover {
@@ -50,4 +51,7 @@
 
 .card:hover {
     background-color: rgb(129, 139, 149);
+}
+.error{
+    color: red;
 }
