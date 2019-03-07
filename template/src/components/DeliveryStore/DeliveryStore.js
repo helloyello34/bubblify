@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form from '../Form/Form.js';
 import Input from '../Input/Input.js';
 
-class DeliveryCheckout extends Component {
+class DeliveryStore extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -62,4 +62,4 @@ class DeliveryCheckout extends Component {
     }
 }
 
-export default DeliveryCheckout;
+export default DeliveryStore;
