@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const NavLinks = props => {
-    console.log(props);
     return (
         <div className="navbar-collapse collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
