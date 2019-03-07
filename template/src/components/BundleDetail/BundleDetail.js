@@ -20,7 +20,6 @@ class BundleDetail extends React.Component {
 
 	componentDidMount() {
 		BubbleServices.getBundleById(this.state.id).then(res => {
-			console.log(res);
 			this.setState({
 				bundle: res
 			});
