@@ -69,7 +69,7 @@ class DeliveryStore extends Component {
         if (this.state.isValid) {
             return <Route to='/review'
                 render={() => (
-                    <ReviewOrder telephoneNumber={telephone} cartItems={this.props.cartItems} />
+                    <ReviewOrder telephoneNumber={telephone} cartItems={this.props.cartItems} emptyCart={this.props.emptyCart} />
                 )} />
         } else {
             return (
