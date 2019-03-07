@@ -8,7 +8,7 @@ class Cart extends React.Component {
     }
 
     render() {
-        const { cartItems, total, emptyCart} = this.props;
+        const { cartItems, total, emptyCart } = this.props;
         return (
             <React.Fragment>
                 <h1>Your Cart</h1>
@@ -63,6 +63,7 @@ class Cart extends React.Component {
 
 Cart.propTypes = {
     cartItems: PropTypes.object,
+    emptyCart: PropTypes.func,
     removeFromCart: PropTypes.func
 }
 

@@ -3,6 +3,7 @@ import Form from '../Form/Form.js';
 import Input from '../Input/Input.js';
 import { Route, Redirect } from 'react-router-dom'
 import ReviewOrder from '../ReviewOrder/ReviewOrder.js';
+import PropTypes from 'prop-types'
 
 class DeliveryCheckout extends Component {
     constructor(props) {
@@ -28,7 +29,12 @@ class DeliveryCheckout extends Component {
 
     componentDidMount() {
         var user = JSON.parse(localStorage.getItem('user'));
-        this.setState(user);
+
+        if (user) {
+            this.setState({
+                fields: user,
+            });
+        }
 
     }
 
@@ -74,7 +80,7 @@ class DeliveryCheckout extends Component {
                 errors: this.state.errors,
                 isValid: true
             })
-            localStorage.setItem('user', JSON.stringify(this.state));
+            localStorage.setItem('user', JSON.stringify(this.state.fields));
         }
     }
 
@@ -144,7 +150,8 @@ class DeliveryCheckout extends Component {
 }
 
 DeliveryCheckout.propTypes = {
-
+    cartItems: PropTypes.object,
+    emptyCart: PropTypes.func
 }
 
 export default DeliveryCheckout;

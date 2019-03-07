@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const NavLinks = props => {
     return (
@@ -33,12 +34,16 @@ const NavLinks = props => {
                         exact to="/cart"
                         activeClassName="active"
                         className="nav-link">
-                        Cart { props.numInCart != 0 ? "( " + props.numInCart + " )" : "" }
+                        Cart {props.numInCart != 0 ? "( " + props.numInCart + " )" : ""}
                     </NavLink>
                 </li>
             </ul>
         </div>
     );
+};
+
+NavLinks.propTypes = {
+    numInCart: PropTypes.number
 };
 
 export default NavLinks

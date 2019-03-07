@@ -3,6 +3,7 @@ import Form from '../Form/Form.js';
 import Input from '../Input/Input.js';
 import { Route } from 'react-router-dom';
 import ReviewOrder from '../ReviewOrder/ReviewOrder.js';
+import PropTypes from 'prop-types'
 
 class DeliveryStore extends Component {
     constructor(props) {
@@ -99,6 +100,11 @@ class DeliveryStore extends Component {
             );
         }
     }
+}
+
+DeliveryStore.propTypes = {
+    cartItems: PropTypes.object,
+    emptyCart: PropTypes.func
 }
 
 export default DeliveryStore;

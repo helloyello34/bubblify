@@ -52,8 +52,9 @@ class BundleDetail extends React.Component {
 
 };
 
+BundleDetail.propTypes = {
+	addToCart: PropTypes.func
+}
+
 export default BundleDetail;
 
-BundleDetail.propTypes = {
-	id: PropTypes.number
-}

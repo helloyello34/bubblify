@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import BubbleServices from '../../services/BubbleServices/BubbleServices'
+import PropTypes from 'prop-types'
 
 class Success extends React.Component {
     constructor(props) {
@@ -30,6 +31,11 @@ class Success extends React.Component {
             </div>
         );
     }
+}
+
+Success.propTypes = {
+    cartItems: PropTypes.object,
+    telephoneNumber: PropTypes.string
 }
 
 export default Success;
