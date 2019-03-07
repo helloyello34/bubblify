@@ -26,21 +26,26 @@ class ReviewOrder extends Component {
         }
         return (
             <React.Fragment>
-                <ul>
-                    {
-                        bubbles.map(bubble => {
-                            return (
-                                <li key={bubbles.indexOf(bubble)}>
-                                    {bubble.name}, kr.{bubble.price}
-                                    <i className="fas fa-trash-alt trash"></i>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
+            <h1>Review Order</h1>
+            {
+                bubbles.map((bubble, index) => {
+                    return (
+                        <blockquote className="blockquote" key={index}>
+                            <Link to={`/bubbles/${bubble.id}`}>
+                                <p className="mb-0">
+                                    {bubble.name}
+                                </p>
+                            </Link>
+                            <footer className="blockquote-footer">
+                                kr.{bubble.price}
+                            </footer>
+                        </blockquote>
+                    )
+                })
+            }
                 <button className="btn btn-primary" onClick={e => this.onClickHandler()}>Accept</button>
                 <Link to="/">
-                    <button className="btn btn-danger">Decline</button>
+                    <button className="btn btn-danger">Cancel</button>
                 </Link>
             </React.Fragment>
         );

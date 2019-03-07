@@ -4,13 +4,26 @@ import App from '../App'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-const Cart = props => {
-    const { bubbles, total } = props.cartItems;
-    const removeFromCart = props.removeFromCart;
-    return (
+class Cart extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            bubbles: props.cartItems.bubbles,
+            total: props.cartItems.total,
+            removeFromCart: props.removeFromCart
+        }
+    }
+
+    componentDidMount() {
+
+    }
+
+    render(){
+        return (
         <React.Fragment>
+            <h1>Your Cart</h1>
             {
-                bubbles.map((bubble, index) => {
+                this.state.bubbles.map((bubble, index) => {
                     return (
                         <blockquote className="blockquote" key={index}>
                             <Link to={`/bubbles/${bubble.id}`}>
@@ -21,23 +34,37 @@ const Cart = props => {
                             <footer className="blockquote-footer">
                                 kr.{bubble.price}
                                 <i className="fas fa-trash-alt trash" onClick={() => {
-                                    removeFromCart(index);
+                                    this.state.removeFromCart(index);
                                 }}></i>
                             </footer>
                         </blockquote>
                     )
                 })
             }
-            <p> total kr. {total} </p>
-            <Link to="/checkoutdelivery" cartitems={props.cartItems} key={props.cartItems.id}>
-                <button className="btn btn-primary">Checkout by delivery</button>
+            <p> total kr. {this.state.total} </p>
+            <Link to="/checkoutdelivery" cartitems={this.props.cartItems} key={this.props.cartItems.id}>
+                <button className={this.getBtnClasses()} disabled={this.isBtnDisabled()}>Checkout by delivery</button>
             </Link>
             <Link to="/checkout">
-                <button className="btn btn-primary">Checkout by store pickup</button>
+                <button className={this.getBtnClasses()} disabled={this.isBtnDisabled()}>Checkout by store pickup</button>
             </Link>
         </React.Fragment>
     );
-};
+    }
+    getBtnClasses(){
+        let classes = "btn btn-primary"
+        if(this.state.bubbles.length < 1){
+            classes += " disabled";
+        }
+        return classes;
+    }
+    isBtnDisabled(){
+        if(this.state.bubbles.length < 1){
+            return true
+        }
+        return false
+    }
+}
 
 Cart.propTypes = {
     bubbles: PropTypes.object,
