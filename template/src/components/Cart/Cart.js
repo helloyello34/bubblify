@@ -32,8 +32,8 @@ const Cart = props => {
             <Link to="/checkoutdelivery" cartitems={props.cartItems} key={props.cartItems.id}>
                 <button className="btn btn-primary">Checkout by delivery</button>
             </Link>
-            <Link to="/checkout" cartitems={props.cartItems} key={props.cartItems.id}>
-                <button className="btn btn-primary">Checkout by delivery</button>
+            <Link to="/checkout">
+                <button className="btn btn-primary">Checkout by store pickup</button>
             </Link>
         </React.Fragment>
     );
