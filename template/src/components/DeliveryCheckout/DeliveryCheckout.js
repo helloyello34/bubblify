@@ -24,12 +24,11 @@ class DeliveryCheckout extends Component {
             },
             isValid: false
         };
-        console.log(this.props);
     }
 
     componentDidMount() {
-        var my = JSON.parse(localStorage.getItem('user'));
-        this.setState(my);
+        var user = JSON.parse(localStorage.getItem('user'));
+        this.setState(user);
 
     }
 
@@ -80,8 +79,6 @@ class DeliveryCheckout extends Component {
     }
 
     render() {
-        console.log(this.state);
-
         const { name, address, telephone, city, postalCode } = this.state.fields;
         const { nameError, telephoneError, cityError, addressError, postalCodeError } = this.state.errors;
         if (this.state.isValid) {
@@ -144,6 +141,10 @@ class DeliveryCheckout extends Component {
             );
         }
     }
+}
+
+DeliveryCheckout.propTypes = {
+
 }
 
 export default DeliveryCheckout;

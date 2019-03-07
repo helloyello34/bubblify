@@ -21,7 +21,7 @@ class App extends React.Component {
 
     constructor() {
         super();
-        // localStorage.clear();
+        //localStorage.clear();
         this.state = {
             bubbles: {
                 data: [],
@@ -106,9 +106,9 @@ class App extends React.Component {
 
     emptyCartHandler = () => {
         this.setState({
-            bubbles: {...this.state.bubbles},
-            bundles: {...this.state.bundles},
-            cart: {...this.state.cart, total: 0, bubbles: []}
+            bubbles: { ...this.state.bubbles },
+            bundles: { ...this.state.bundles },
+            cart: { ...this.state.cart, total: 0, bubbles: [] }
         })
     }
 
