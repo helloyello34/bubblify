@@ -38,17 +38,31 @@ const getBundleById = id => {
 
 
 const postOrder = (cartItems, telephone) => {
-    fetch(`http://localhost:3500/api/orders`, {
-        method: 'post',
+    return fetch(`http://localhost:3500/api/orders/${telephone}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
         body: JSON.stringify({
-            cart: cartItems,
-            telephone: telephone
+            cart: {
+                bubbles: cartItems.bubbles,
+                price: cartItems.total,
+            },
+            telephone: telephone,
         })
     }).then(function (response) {
-        console.log(response.json());
-        return response.json();
+        return response.text();
     }).then(function (data) {
         return data;
+    });
+}
+
+const getOrders = (telephone) => {
+    return fetch(`http://localhost:3500/api/orders/${telephone}`).then(resp => {
+        return resp.ok ? resp.json(): null
+    }).then(data => {
+        return data ? data: [];
     });
 }
 
@@ -58,5 +72,6 @@ export default {
     getBubbleById,
     getAllBundles,
     getBundleById,
-    postOrder
+    postOrder,
+    getOrders
 };

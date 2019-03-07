@@ -1,6 +1,4 @@
 import React from 'react'
-import Navbar from '../Navbar/Navbar'
-import App from '../App'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -34,8 +32,11 @@ class Cart extends React.Component {
                             <footer className="blockquote-footer">
                                 kr.{bubble.price}
                                 <i className="fas fa-trash-alt trash" onClick={() => {
-                                    this.state.removeFromCart(index);
+                                    if(this.state.removeFromCart != 'undefined'){
+                                        removeFromCart(index);
+                                    }
                                 }}></i>
+
                             </footer>
                         </blockquote>
                     )

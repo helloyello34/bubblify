@@ -27,6 +27,18 @@ class DeliveryCheckout extends Component {
         console.log(this.props);
     }
 
+    componentDidMount() {
+        var my = JSON.parse(localStorage.getItem('user'));
+        this.setState(my);
+
+    }
+
+    componentWillUnmount() {
+        this.setState({
+            isValid: false
+        });
+    }
+
 
     validateForm() {
         const { name, address, telephone, city, postalCode } = this.state.fields;
@@ -35,8 +47,8 @@ class DeliveryCheckout extends Component {
         if (name === '') { errors.nameError = 'Full name is required'; }
         if (city === '') { errors.cityError = 'City is required'; }
         if (address === '') { errors.addressError = 'Address is required'; }
-        if (telephone === '') { errors.telephoneError = 'Telephone is required'; }
-        if (postalCode === '') { errors.postalCodeError = 'Postal code is required'; }
+        if (!telephone.match(/[0-9]{7}/)) { errors.telephoneError = 'Telephone number is invalid'; }
+        if (!postalCode.match(/[0-9]{3}/)) { errors.postalCodeError = 'Postal code is required'; }
 
 
         if (Object.keys(errors).length > 0) {
@@ -63,15 +75,16 @@ class DeliveryCheckout extends Component {
                 errors: this.state.errors,
                 isValid: true
             })
+            localStorage.setItem('user', JSON.stringify(this.state));
         }
-
     }
 
     render() {
+        console.log(this.state);
+
         const { name, address, telephone, city, postalCode } = this.state.fields;
         const { nameError, telephoneError, cityError, addressError, postalCodeError } = this.state.errors;
         if (this.state.isValid) {
-            console.log('telephone is', telephone);
             return <Route to='/review'
                 render={() => (
                     <ReviewOrder telephoneNumber={telephone} cartItems={this.props.cartItems} emptyCart={this.props.emptyCart} />

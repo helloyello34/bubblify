@@ -1,18 +1,25 @@
-import React, { Component } from 'react';
-import BubbleServices from '../../services/BubbleServices/BubbleServices.js'
+import React from 'react';
+import BubbleServices from '../../services/BubbleServices/BubbleServices'
 
-class Success extends Component {
+class Success extends React.Component {
     constructor(props) {
         super(props);
-        /*
-                BubbleServices.postOrder(props.cartItems, props.telephoneNumber).then(res => {
-                });
-                */
+        this.state = {
+            response: ""
+        }
+    }
+
+    componentDidMount() {
+        BubbleServices.postOrder(this.props.cartItems, this.props.telephoneNumber).then(res => {
+            this.setState({
+                response: res
+            });
+        })
     }
 
     render() {
         return (
-            <div>SUCCESS YAYY</div>
+            <div>{this.state.response}</div>
         );
     }
 }

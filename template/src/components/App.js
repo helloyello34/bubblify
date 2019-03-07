@@ -15,12 +15,13 @@ import { BundleProvider } from '../context/BundleContext/BundleContext'
 import BubbleServices from '../services/BubbleServices/BubbleServices'
 import ReviewOrder from './ReviewOrder/ReviewOrder';
 import Success from './Success/Success.js'
+import OldOrders from './OldOrders/OldOrders'
 
 class App extends React.Component {
 
     constructor() {
         super();
-        //localStorage.clear();
+        // localStorage.clear();
         this.state = {
             bubbles: {
                 data: [],
@@ -75,15 +76,15 @@ class App extends React.Component {
         var arr = this.state.cart.bubbles;
         let tempArr = [];
         let price = this.state.cart.total;
-        for(let i = 0; i < bundle.items.length; i++) {
-            tempArr.push(this.state.bubbles.data[bundle.items[i]-1]);
-            price += this.state.bubbles.data[bundle.items[i]-1].price
+        for (let i = 0; i < bundle.items.length; i++) {
+            tempArr.push(this.state.bubbles.data[bundle.items[i] - 1]);
+            price += this.state.bubbles.data[bundle.items[i] - 1].price
         }
         arr = [...arr, ...tempArr];
         this.setState({
             bubbles: this.state.bubbles,
             bundles: this.state.bundles,
-            cart: {...this.state.cart, total: price, bubbles: arr}
+            cart: { ...this.state.cart, total: price, bubbles: arr }
         })
     }
 
@@ -92,14 +93,14 @@ class App extends React.Component {
 
         var arr = this.state.cart.bubbles;
         var total = this.state.cart.total - this.state.cart.bubbles[id].price;
-        if(arr.length > -1) {
+        if (arr.length > -1) {
             arr.splice(id, 1);
         }
 
         this.setState({
-            bubbles: {...this.state.bubbles},
-            bundles: {...this.state.bundles},
-            cart: {...this.state.cart, total: total, bubbles: arr}
+            bubbles: { ...this.state.bubbles },
+            bundles: { ...this.state.bundles },
+            cart: { ...this.state.cart, total: total, bubbles: arr }
         });
     }
 
@@ -148,11 +149,11 @@ class App extends React.Component {
                             <Route exact path="/bundles"
                                 render={(routeProps) => (
                                     <Bundle {...routeProps} {...this.props} addToCart={this.addBundleToCartHandler} />
-                                )}/>
+                                )} />
                             <Route exact path="/bundles/:id"
                                 render={(routeProps) => (
                                     <BundleDetail {...routeProps} {...this.props} addToCart={this.addBundleToCartHandler} />
-                                )}/>
+                                )} />
                             <Route exact path="/about" component={About} />
                             <Route exact path="/checkoutdelivery"
                                 render={() => (
@@ -166,6 +167,9 @@ class App extends React.Component {
                                 render={(routeProps) => (
                                     <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} />
                                 )} />
+                            <Route exact path="/oldorders" render={() => (
+                                <OldOrders currentCart={this.state.cart} />
+                            )} />
                         </div>
                     </div>
                 </BundleProvider>
