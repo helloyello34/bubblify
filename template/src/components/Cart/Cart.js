@@ -8,11 +8,11 @@ const Cart = props => {
     const removeFromCart = props.removeFromCart;
     return (
         <React.Fragment>
-            <ul>
+            <ul className="list-group">
                 {
                     bubbles.map((bubble, index) => {
                         return (
-                            <li key={index}>
+                            <li className="list-group-item d-flex justify-content-between align-items-center" key={index}>
                                 {bubble.name}, kr.{bubble.price}
                                 <i className="fas fa-trash-alt trash" onClick={() => {
                                     removeFromCart(index);
