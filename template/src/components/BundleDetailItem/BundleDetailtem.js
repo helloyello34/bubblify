@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 //MUNA proptypes
 
@@ -17,9 +18,16 @@ const BundleDetailItem = (props) => {
                     <p className="text-white">kr. {price}</p>
                 </div>
             </NavLink>
-            <button type="button" className="btn btn-primary" onClick={() => addToCart(props)}>Add to cart</button>
         </div>
     );
 };
+
+BundleDetailItem.propTypes = {
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    image: PropTypes.string,
+    addToCart: PropTypes.func
+}
 
 export default BundleDetailItem;

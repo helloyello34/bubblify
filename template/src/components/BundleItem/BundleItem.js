@@ -2,29 +2,29 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {NavLink} from 'react-router-dom'
 
-const ProductItem = (props) => {
-    const { id, name, items } = props
-    var link = "/bundles/" + id
+const BundleItem = (props) => {
+    const {product, addToCart} = props;
+    var link = "/bundles/" + product.id;
     return (
         <div
-        key={ id }
+        key={product.id}
         className="list-group-item list-group-item-action flex-column align-items-center">
             <NavLink
             exact to={link}
+            key={product.id}
             >
                 <div>
-                    <div className="card-header text-white">{name}</div>
+                    <div className="card-header text-white">{product.name}</div>
                 </div>
             </NavLink>
-            <button type="button" className="btn btn-primary">Add to cart</button>
+            <button type="button" className="btn btn-primary" onClick={() => addToCart(product)}>Add to cart</button>
         </div>
     );
 };
 
-ProductItem.propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    items: PropTypes.array.isRequired
+BundleItem.propTypes = {
+    product: PropTypes.object,
+    addToCart: PropTypes.func
 };
 
-export default ProductItem;
+export default BundleItem;

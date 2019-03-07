@@ -46,10 +46,12 @@ class App extends React.Component {
             },
             cart: {
                 bubbles: [],
-                setCart: data => {
+                total: 0,
+                setCart: (data, total) => {
                     this.setState({
                         cart: {
                             ...this.state.cart,
+                            total: total,
                             bubbles: data
                         }
                     })
@@ -60,14 +62,45 @@ class App extends React.Component {
 
     addToCartHandler = (item) => {
         //setState of cart and save to localStorage
-
         var arr = this.state.cart.bubbles;
         arr = [...arr, item];
         this.setState({
             bubbles: this.state.bubbles,
             bundles: this.state.bundles,
-            cart: { ...this.state.cart, bubbles: arr },
+            cart: { ...this.state.cart, total: this.state.cart.total + item.price, bubbles: arr },
         })
+    }
+
+    addBundleToCartHandler = (bundle) => {
+        var arr = this.state.cart.bubbles;
+        let tempArr = [];
+        let price = this.state.cart.total;
+        for(let i = 0; i < bundle.items.length; i++) {
+            tempArr.push(this.state.bubbles.data[bundle.items[i]-1]);
+            price += this.state.bubbles.data[bundle.items[i]-1].price
+        }
+        arr = [...arr, ...tempArr];
+        this.setState({
+            bubbles: this.state.bubbles,
+            bundles: this.state.bundles,
+            cart: {...this.state.cart, total: price, bubbles: arr}
+        })
+    }
+
+    removeFromCartHandler = (id) => {
+        // Remove from the cart
+
+        var arr = this.state.cart.bubbles;
+        var total = this.state.cart.total - this.state.cart.bubbles[id].price;
+        if(arr.length > -1) {
+            arr.splice(id, 1);
+        }
+
+        this.setState({
+            bubbles: {...this.state.bubbles},
+            bundles: {...this.state.bundles},
+            cart: {...this.state.cart, total: total, bubbles: arr}
+        });
     }
 
     componentDidUpdate() {
@@ -83,7 +116,7 @@ class App extends React.Component {
         });
         var myCart = JSON.parse(localStorage.getItem('cart'));
         if (myCart != null) {
-            this.state.cart.setCart(myCart.bubbles);
+            this.state.cart.setCart(myCart.bubbles, myCart.total);
         }
     }
 
@@ -92,7 +125,7 @@ class App extends React.Component {
             <BubbleProvider value={this.state.bubbles}>
                 <BundleProvider value={this.state.bundles}>
                     <div>
-                        <Navbar length={this.state.cart.bubbles.length} />
+                        <Navbar cartCount={this.state.cart.bubbles.length} />
                         <div className="container">
                             <Route exact path="/" component={Home} />
                             <Route path="/home" render={() => <Redirect to="/" />} />
@@ -100,15 +133,19 @@ class App extends React.Component {
                                 render={(routeProps) => (
                                     <Bubbles {...routeProps} {...this.props} addToCart={this.addToCartHandler} />
                                 )} />
-                            <Route exact path="/cart"
+                            <Route exact path="/bubbles/:id"
                                 render={(routeProps) => (
-                                    <Cart cartItems={this.state.cart} />
+                                    <ProductDetail {...routeProps} {...this.props} addToCart={this.addToCartHandler} />
                                 )} />
-                            <Route exact path="/bubbles/:id" component={ProductDetail} />
-                            <Route exact path="/bundles" component={Bundle} />
-                            <Route exact path="/bundles/:id" component={BundleDetail} />
+                            <Route exact path="/bundles"
+                                render={(routeProps) => (
+                                    <Bundle {...routeProps} {...this.props} addToCart={this.addBundleToCartHandler} />
+                                )}/>
+                            <Route exact path="/bundles/:id"
+                                render={(routeProps) => (
+                                    <BundleDetail {...routeProps} {...this.props} addToCart={this.addBundleToCartHandler} />
+                                )}/>
                             <Route exact path="/about" component={About} />
-                            <Route exact path="/about" component={Success} />
                             <Route exact path="/checkoutdelivery"
                                 render={() => (
                                     <DeliveryCheckout cartItems={this.state.cart} />
@@ -116,6 +153,9 @@ class App extends React.Component {
                             <Route exact path="/checkout"
                                 render={() => (
                                     <DeliveryStore cartItems={this.state.cart} />
+                            <Route exact path="/cart"
+                                render={(routeProps) => (
+                                    <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} />
                                 )} />
                         </div>
                     </div>

@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
 import ProductContainer from '../ProductContainer/ProductContainer'
-// import BubbleServices from '../../services/BubbleServices/BubbleServices'
+import PropTypes from 'prop-types';
 
-
-//muna bæta við proptype fyrir addtocart fall ?
-
-class Bubbles extends Component {
-    render() {
-        return (
-            <div className="outer-product-container">
-                <ProductContainer addToCart={this.props.addToCart} />
-            </div>
-        );
-    }
+const Bubbles = (props) => {
+    const {addToCart} = props;
+    return (
+        <div className="outer-product-container">
+            <ProductContainer addToCart={addToCart} />
+        </div>
+    );
 }
 
+Bubbles.propTypes = {
+    addToCart: PropTypes.func
+}
 
 export default Bubbles;

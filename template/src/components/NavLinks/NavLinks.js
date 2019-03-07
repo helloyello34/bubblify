@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const NavLinks = () => {
+const NavLinks = props => {
     return (
         <div className="navbar-collapse collapse" id="navbarColor01">
             <ul className="navbar-nav mr-auto">
@@ -33,7 +33,7 @@ const NavLinks = () => {
                         exact to="/cart"
                         activeClassName="active"
                         className="nav-link">
-                        Cart
+                        Cart { props.numInCart != 0 ? "( " + props.numInCart + " )" : "" }
                     </NavLink>
                 </li>
             </ul>

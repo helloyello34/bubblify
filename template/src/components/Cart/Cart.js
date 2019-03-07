@@ -2,24 +2,34 @@ import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import App from '../App'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const Cart = props => {
-    const { bubbles } = props.cartItems;
+    const { bubbles, total } = props.cartItems;
+    const removeFromCart = props.removeFromCart;
     return (
         <React.Fragment>
-            <ul>
-                {
-                    bubbles.map(bubble => {
-                        return (
-                            <li key={bubbles.indexOf(bubble)}>
-                                {bubble.name}, kr.{bubble.price}
-                                <i className="fas fa-trash-alt trash"></i>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-            <Link to="/checkoutdelivery">
+            {
+                bubbles.map((bubble, index) => {
+                    return (
+                        <blockquote className="blockquote" key={index}>
+                            <Link to={`/bubbles/${bubble.id}`}>
+                                <p className="mb-0">
+                                    {bubble.name}
+                                </p>
+                            </Link>
+                            <footer className="blockquote-footer">
+                                kr.{bubble.price}
+                                <i className="fas fa-trash-alt trash" onClick={() => {
+                                    removeFromCart(index);
+                                }}></i>
+                            </footer>
+                        </blockquote>
+                    )
+                })
+            }
+            <p> total kr. {total} </p>
+            <Link to="/checkoutdelivery" cartitems={props.cartItems} key={props.cartItems.id}>
                 <button className="btn btn-primary">Checkout by delivery</button>
             </Link>
             <Link to="/checkout">
@@ -28,5 +38,10 @@ const Cart = props => {
         </React.Fragment>
     );
 };
+
+Cart.propTypes = {
+    bubbles: PropTypes.object,
+    total: PropTypes.number
+}
 
 export default Cart;

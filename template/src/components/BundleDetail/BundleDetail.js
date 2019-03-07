@@ -14,13 +14,12 @@ class BundleDetail extends React.Component {
 			bundle: {
 				id: 0,
 				items: []
-			}
+			},
 		};
 	}
 
 	componentDidMount() {
 		BubbleServices.getBundleById(this.state.id).then(res => {
-			console.log(res);
 			this.setState({
 				bundle: res
 			});
@@ -33,6 +32,7 @@ class BundleDetail extends React.Component {
 				<div>
 					<h1>{this.state.bundle.name}</h1>
 				</div>
+				<button type="button" className="btn btn-primary" onClick={() => this.props.addToCart(this.state.bundle)}>Add to cart</button>
 				<BubbleConsumer>
 					{
 						BubbleContext => {
@@ -51,4 +51,9 @@ class BundleDetail extends React.Component {
 	}
 
 };
+
 export default BundleDetail;
+
+BundleDetail.propTypes = {
+	id: PropTypes.number
+}
