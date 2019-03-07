@@ -165,7 +165,7 @@ class App extends React.Component {
                                 )} />
                             <Route exact path="/cart"
                                 render={(routeProps) => (
-                                    <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} />
+                                    <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} emptyCart={this.emptyCartHandler} />
                                 )} />
                             <Route exact path="/oldorders" render={() => (
                                 <OldOrders currentCart={this.state.cart} />

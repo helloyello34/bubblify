@@ -8,7 +8,7 @@ class Cart extends React.Component {
     }
 
     render() {
-        const { cartItems, total } = this.props;
+        const { cartItems, total, emptyCart} = this.props;
         return (
             <React.Fragment>
                 <h1>Your Cart</h1>
@@ -28,24 +28,26 @@ class Cart extends React.Component {
                                             this.props.removeFromCart(index);
                                         }
                                     }}></i>
-
                                 </footer>
                             </blockquote>
                         )
                     })
                 }
                 <p> total kr. {cartItems.total} </p>
+                <button className={this.getBtnClasses('danger')} onClick={() => {
+                    emptyCart();
+                }} >Empty Cart</button> <br />
                 <Link to="/checkoutdelivery" cartitems={this.props.cartItems} key={this.props.cartItems.id}>
-                    <button className={this.getBtnClasses()} disabled={this.isBtnDisabled()}>Checkout by delivery</button>
+                    <button className={this.getBtnClasses('primary')} disabled={this.isBtnDisabled()}>Checkout by delivery</button>
                 </Link>
                 <Link to="/checkout">
-                    <button className={this.getBtnClasses()} disabled={this.isBtnDisabled()}>Checkout by store pickup</button>
+                    <button className={this.getBtnClasses('primary')} disabled={this.isBtnDisabled()}>Checkout by store pickup</button>
                 </Link>
             </React.Fragment>
         );
     }
-    getBtnClasses() {
-        let classes = "btn btn-primary"
+    getBtnClasses(theme) {
+        let classes = `btn btn-${theme} cart-btn`
         if (this.props.cartItems.bubbles.length < 1) {
             classes += " disabled";
         }
