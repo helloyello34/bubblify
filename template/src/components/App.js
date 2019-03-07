@@ -104,6 +104,14 @@ class App extends React.Component {
         });
     }
 
+    emptyCartHandler = () => {
+        this.setState({
+            bubbles: {...this.state.bubbles},
+            bundles: {...this.state.bundles},
+            cart: {...this.state.cart, total: 0, bubbles: []}
+        })
+    }
+
     componentDidUpdate() {
         localStorage.setItem('cart', JSON.stringify(this.state.cart));
     }
@@ -157,7 +165,7 @@ class App extends React.Component {
                                 )} />
                             <Route exact path="/cart"
                                 render={(routeProps) => (
-                                    <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} />
+                                    <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} emptyCart={this.emptyCartHandler} />
                                 )} />
                             <Route exact path="/oldorders" render={() => (
                                 <OldOrders currentCart={this.state.cart} />

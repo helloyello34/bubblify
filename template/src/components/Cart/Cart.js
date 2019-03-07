@@ -17,6 +17,7 @@ class Cart extends React.Component {
     }
 
     render(){
+        const {emptyCart} = this.props;
         return (
         <React.Fragment>
             <h1>Your Cart</h1>
@@ -43,17 +44,20 @@ class Cart extends React.Component {
                 })
             }
             <p> total kr. {this.state.total} </p>
+            <button className={this.getBtnClasses('danger')} onClick={() => {
+                emptyCart();
+            }} >Empty Cart</button> <br />
             <Link to="/checkoutdelivery" cartitems={this.props.cartItems} key={this.props.cartItems.id}>
-                <button className={this.getBtnClasses()} disabled={this.isBtnDisabled()}>Checkout by delivery</button>
+                <button className={this.getBtnClasses('primary')} disabled={this.isBtnDisabled()}>Checkout by delivery</button>
             </Link>
             <Link to="/checkout">
-                <button className={this.getBtnClasses()} disabled={this.isBtnDisabled()}>Checkout by store pickup</button>
+                <button className={this.getBtnClasses('primary')} disabled={this.isBtnDisabled()}>Checkout by store pickup</button>
             </Link>
         </React.Fragment>
     );
     }
-    getBtnClasses(){
-        let classes = "btn btn-primary"
+    getBtnClasses(theme){
+        let classes = `btn btn-${theme} cart-btn`
         if(this.state.bubbles.length < 1){
             classes += " disabled";
         }
