@@ -27,8 +27,8 @@ class DeliveryCheckout extends Component {
     }
 
     componentDidMount() {
-        var my = JSON.parse(localStorage.getItem('user'));
-        this.setState(my);
+        var user = JSON.parse(localStorage.getItem('user'));
+        this.setState(user);
 
     }
 
@@ -79,14 +79,12 @@ class DeliveryCheckout extends Component {
     }
 
     render() {
-        console.log(this.state);
-
         const { name, address, telephone, city, postalCode } = this.state.fields;
         const { nameError, telephoneError, cityError, addressError, postalCodeError } = this.state.errors;
         if (this.state.isValid) {
             return <Route to='/review'
                 render={() => (
-                    <ReviewOrder telephoneNumber={telephone} cartItems={this.props.cartItems} />
+                    <ReviewOrder telephoneNumber={telephone} cartItems={this.props.cartItems} emptyCart={this.props.emptyCart} />
                 )} />
         } else {
             return (
@@ -97,7 +95,7 @@ class DeliveryCheckout extends Component {
                             name="name"
                             value={name}
                             htmlId="name"
-                            label="Enter name"
+                            label="Full name"
                             errorMessage={nameError}
                             onChange={e => this.onChange(e)}
                         />
@@ -106,7 +104,7 @@ class DeliveryCheckout extends Component {
                             name="city"
                             value={city}
                             htmlId="city"
-                            label="Enter city"
+                            label="City"
                             errorMessage={cityError}
                             onChange={e => this.onChange(e)}
                         />
@@ -115,7 +113,7 @@ class DeliveryCheckout extends Component {
                             name="address"
                             value={address}
                             htmlId="address"
-                            label="Enter your address"
+                            label="Address"
                             errorMessage={addressError}
                             onChange={e => this.onChange(e)}
                         />
@@ -124,7 +122,7 @@ class DeliveryCheckout extends Component {
                             name="postalCode"
                             value={postalCode}
                             htmlId="postalCode"
-                            label="Enter postalCode"
+                            label="Postal Code"
                             errorMessage={postalCodeError}
                             onChange={e => this.onChange(e)}
                         />
@@ -133,7 +131,7 @@ class DeliveryCheckout extends Component {
                             name="telephone"
                             value={telephone}
                             htmlId="telephone"
-                            label="Enter telephone number"
+                            label="Phonenumber"
                             errorMessage={telephoneError}
                             onChange={e => this.onChange(e)}
                         />
@@ -143,6 +141,10 @@ class DeliveryCheckout extends Component {
             );
         }
     }
+}
+
+DeliveryCheckout.propTypes = {
+
 }
 
 export default DeliveryCheckout;

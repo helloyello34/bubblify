@@ -21,7 +21,7 @@ class App extends React.Component {
 
     constructor() {
         super();
-        // localStorage.clear();
+        //localStorage.clear();
         this.state = {
             bubbles: {
                 data: [],
@@ -104,6 +104,14 @@ class App extends React.Component {
         });
     }
 
+    emptyCartHandler = () => {
+        this.setState({
+            bubbles: { ...this.state.bubbles },
+            bundles: { ...this.state.bundles },
+            cart: { ...this.state.cart, total: 0, bubbles: [] }
+        })
+    }
+
     componentDidUpdate() {
         localStorage.setItem('cart', JSON.stringify(this.state.cart));
     }
@@ -149,11 +157,11 @@ class App extends React.Component {
                             <Route exact path="/about" component={About} />
                             <Route exact path="/checkoutdelivery"
                                 render={() => (
-                                    <DeliveryCheckout cartItems={this.state.cart} />
+                                    <DeliveryCheckout cartItems={this.state.cart} emptyCart={this.emptyCartHandler} />
                                 )} />
                             <Route exact path="/checkout"
                                 render={() => (
-                                    <DeliveryStore cartItems={this.state.cart} />
+                                    <DeliveryStore cartItems={this.state.cart} emptyCart={this.emptyCartHandler} />
                                 )} />
                             <Route exact path="/cart"
                                 render={(routeProps) => (

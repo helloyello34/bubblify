@@ -4,7 +4,7 @@ import Input from '../Input/Input.js';
 import { Route } from 'react-router-dom';
 import ReviewOrder from '../ReviewOrder/ReviewOrder.js';
 
-class DeliveryCheckout extends Component {
+class DeliveryStore extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -69,7 +69,7 @@ class DeliveryCheckout extends Component {
         if (this.state.isValid) {
             return <Route to='/review'
                 render={() => (
-                    <ReviewOrder telephoneNumber={telephone} cartItems={this.props.cartItems} />
+                    <ReviewOrder telephoneNumber={telephone} cartItems={this.props.cartItems} emptyCart={this.props.emptyCart} />
                 )} />
         } else {
             return (
@@ -101,4 +101,4 @@ class DeliveryCheckout extends Component {
     }
 }
 
-export default DeliveryCheckout;
+export default DeliveryStore;
