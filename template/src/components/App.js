@@ -56,13 +56,22 @@ class App extends React.Component {
 
     addToCartHandler = (item) => {
         //setState of cart and save to localStorage
-
         var arr = this.state.cart.bubbles;
         arr = [...arr, item];
         this.setState({
             bubbles: this.state.bubbles,
             bundles: this.state.bundles,
-            cart: { ...this.state.cart, bubbles: arr },
+            cart: { ...this.state.cart, bubbles: arr }
+        })
+    }
+
+    addBundleToCartHandler = (bundle) => {
+        var arr = this.state.cart.bubbles;
+        arr = [...arr, ...bundle.items];
+        this.setState({
+            bubbles: this.state.bubbles,
+            bundles: this.state.bundles,
+            cart: {...this.state.cart, bubbles: arr}
         })
     }
 
@@ -97,9 +106,18 @@ class App extends React.Component {
                                 render={(routeProps) => (
                                     <Bubbles {...routeProps} {...this.props} addToCart={this.addToCartHandler} />
                                 )} />
-                            <Route exact path="/bubbles/:id" component={ProductDetail} />
-                            <Route exact path="/bundles" component={Bundle} />
-                            <Route exact path="/bundles/:id" component={BundleDetail} />
+                            <Route exact path="/bubbles/:id"
+                                render={(routeProps) => (
+                                    <ProductDetail {...routeProps} {...this.props} addToCart={this.addToCartHandler} />
+                                )} />
+                            <Route exact path="/bundles"
+                                render={(routeProps) => (
+                                    <Bundle {...routeProps} {...this.props} addToCart={this.addBundleToCartHandler} />
+                                )}/>
+                            <Route exact path="/bundles/:id"
+                                render={(routeProps) => (
+                                    <BundleDetail {...routeProps} {...this.props} addToCart={this.addBundleToCartHandler} />
+                                )}/>
                             <Route exact path="/about" component={About} />
                             <Route exact path="/cart" component={Cart} />
                         </div>

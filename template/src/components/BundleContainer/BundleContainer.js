@@ -3,7 +3,7 @@ import BundleItem from '../BundleItem/BundleItem'
 import BubbleServices from '../../services/BubbleServices/BubbleServices'
 import { BundleConsumer } from '../../context/BundleContext/BundleContext'
 
-const BundleContainer = () => {
+const BundleContainer = (props) => {
     return (
         <div className="list-group">
             <BundleConsumer>
@@ -11,7 +11,7 @@ const BundleContainer = () => {
                     BundleContext => {
                         return (
                             BundleContext.data.map(product => {
-                                return BundleItem(product);
+                                return <BundleItem key={product.id} product={product} addToCart={props.addToCart} />
                             })
                         )
                     }

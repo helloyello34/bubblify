@@ -10,6 +10,7 @@ class ProductDetail extends React.Component {
             productId: props.match.params.id,
             product: []
         }
+        console.log(props);
     }
 
     componentDidMount() {
@@ -28,6 +29,7 @@ class ProductDetail extends React.Component {
                 <img src={this.state.product.image}></img>
                 <p>description: {this.state.product.description}</p>
                 <p>kr. {this.state.product.price}</p>
+                <button type="button" className="btn btn-primary" onClick={() => this.props.addToCart(this.state.product)}>Add to cart</button>
             </div>
         );
     }
