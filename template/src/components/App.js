@@ -42,10 +42,12 @@ class App extends React.Component {
             },
             cart: {
                 bubbles: [],
-                setCart: data => {
+                total: 0,
+                setCart: (data, total) => {
                     this.setState({
                         cart: {
                             ...this.state.cart,
+                            total: total,
                             bubbles: data
                         }
                     })
@@ -61,7 +63,8 @@ class App extends React.Component {
         this.setState({
             bubbles: this.state.bubbles,
             bundles: this.state.bundles,
-            cart: { ...this.state.cart, bubbles: arr }
+            cart: { ...this.state.cart, total: this.state.cart.total + item.price, bubbles: arr },
+
         })
     }
 
@@ -79,7 +82,7 @@ class App extends React.Component {
         // Remove from the cart
 
         var arr = this.state.cart.bubbles;
-
+        var total = this.state.cart.total - this.state.cart.bubbles[id].price;
         if(arr.length > -1) {
             arr.splice(id, 1);
         }
@@ -87,7 +90,7 @@ class App extends React.Component {
         this.setState({
             bubbles: {...this.state.bubbles},
             bundles: {...this.state.bundles},
-            cart: {...this.state.cart, bubbles: arr}
+            cart: {...this.state.cart, total: total, bubbles: arr}
         });
     }
 
@@ -104,7 +107,7 @@ class App extends React.Component {
         });
         var myCart = JSON.parse(localStorage.getItem('cart'));
         if (myCart != null) {
-            this.state.cart.setCart(myCart.bubbles);
+            this.state.cart.setCart(myCart.bubbles, myCart.total);
         }
     }
 
