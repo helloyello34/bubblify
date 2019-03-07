@@ -9,5 +9,3 @@ const Form = props => {
 };
 
 export default Form;
-
-//onSubmit={ props.onSubmit }

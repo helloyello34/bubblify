@@ -9,5 +9,4 @@ const Bundle = () => {
         </div>
     )
 }
-
 export default Bundle;
