@@ -1,6 +1,4 @@
 import React from 'react'
-import Navbar from '../Navbar/Navbar'
-import App from '../App'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
