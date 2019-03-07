@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import BubbleServices from '../../services/BubbleServices/BubbleServices'
 
 class Success extends React.Component {
@@ -19,7 +20,14 @@ class Success extends React.Component {
 
     render() {
         return (
-            <div>{this.state.response}</div>
+            <div className="center">
+                <h1>{this.state.response}</h1>
+                <div className="center">
+                    <Link to="/">
+                        <button className="btn btn-primary">Home</button>
+                    </Link>
+                </div>
+            </div>
         );
     }
 }
