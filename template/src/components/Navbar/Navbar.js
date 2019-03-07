@@ -12,7 +12,7 @@ const Navbar = (props) => {
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <NavLinks />
+                <NavLinks numInCart={props.length}/>
                 <i className="fas fa-shopping-cart fa-2x cart-icon"></i>
                 <span className="cart-number badge badge-pill badge-primary">{props.length}</span>
             </div>
