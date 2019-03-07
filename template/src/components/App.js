@@ -112,14 +112,14 @@ class App extends React.Component {
                                 render={(routeProps) => (
                                     <Bubbles {...routeProps} {...this.props} addToCart={this.addToCartHandler} />
                                 )} />
-                            <Route exact path="/cart"
-                                render={(routeProps) => (
-                                    <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} />
-                                )} />
                             <Route exact path="/bubbles/:id" component={ProductDetail} />
                             <Route exact path="/bundles" component={Bundle} />
                             <Route exact path="/bundles/:id" component={BundleDetail} />
                             <Route exact path="/about" component={About} />
+                            <Route exact path="/cart"
+                                render={(routeProps) => (
+                                    <Cart cartItems={this.state.cart} removeFromCart={this.removeFromCartHandler} />
+                                )} />
                         </div>
                     </div>
                 </BundleProvider>
